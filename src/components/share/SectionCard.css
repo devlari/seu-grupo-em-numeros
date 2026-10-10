@@ -1,0 +1,437 @@
+/* Cards de seção: mesma base do resumão (.share-card, .sc-box), tudo em px fixos */
+.section-card {
+  gap: 32px;
+}
+
+.scc-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.scc-group {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scc-title {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  max-width: 100%;
+  font: 96px / 0.95 var(--font-display);
+  text-transform: uppercase;
+}
+
+.scc-n {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 120px;
+  height: 120px;
+  font-size: 64px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 50%;
+  box-shadow: 8px 8px 0 var(--white);
+}
+
+/* Conteúdo centralizado no espaço entre o título e o rodapé */
+.scc-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-height: 0;
+}
+
+.scc-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.scc-cols > * {
+  min-width: 0;
+}
+
+.scc-cols-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.scc-grow {
+  align-content: start;
+}
+
+.scc-box h2 {
+  margin-bottom: 18px;
+}
+
+.scc-box.small {
+  padding: 22px 24px;
+}
+
+.scc-box.small h2 {
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.scc-label {
+  font: 700 26px / 1.2 var(--font-mono);
+  text-transform: uppercase;
+}
+
+.scc-detail {
+  font: 700 28px / 1.3 var(--font-mono);
+}
+
+.scc-footnote {
+  margin: 0;
+  text-align: center;
+  font: 700 30px var(--font-mono);
+}
+
+/* Corta o texto em 3 linhas com reticências */
+.scc-clamp {
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* ---------- Prêmios ---------- */
+.scc-awards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-content: start;
+}
+
+.scc-award {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 22px 28px;
+}
+
+.scc-award-emoji {
+  font-size: 64px;
+  line-height: 1.1;
+}
+
+.scc-award-winner {
+  font: 48px / 1.15 var(--font-display);
+}
+
+.scc-award-detail {
+  font: 500 26px / 1.3 var(--font-body);
+  -webkit-line-clamp: 4;
+}
+
+/* ---------- Destaques ---------- */
+.scc-highlight {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.scc-highlight-emoji {
+  flex: none;
+  font-size: 80px;
+  line-height: 1;
+}
+
+.scc-highlight p {
+  font: 700 38px / 1.25 var(--font-body);
+}
+
+/* ---------- Número grande ---------- */
+.scc-big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  rotate: -1.5deg;
+}
+
+.scc-big-n {
+  font: 128px / 1 var(--font-display);
+}
+
+/* ---------- Fato (rótulo, valor, detalhe) ---------- */
+.scc-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scc-fact-gap {
+  margin-top: 16px;
+}
+
+.scc-fact-value {
+  font: 60px / 1.1 var(--font-display);
+  text-transform: uppercase;
+}
+
+/* ---------- Barras horizontais ---------- */
+.scc-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.scc-bar-row {
+  display: grid;
+  grid-template-columns: 260px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  font: 700 32px var(--font-body);
+}
+
+.scc-bars.wide .scc-bar-row {
+  grid-template-columns: 480px 1fr auto;
+}
+
+.scc-bar-track {
+  height: 40px;
+}
+
+.scc-bar {
+  height: 100%;
+  min-width: 8px;
+  background: var(--pink);
+  border: 4px solid var(--ink);
+  border-radius: 10px;
+}
+
+.scc-bar-row b {
+  font: 700 28px var(--font-mono);
+}
+
+/* ---------- Barras verticais ---------- */
+.scc-columns {
+  display: flex;
+  gap: 16px;
+  height: 220px;
+}
+
+.scc-columns.thin {
+  gap: 6px;
+  height: 200px;
+}
+
+.scc-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.scc-column-track {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.scc-column-bar {
+  width: 100%;
+  min-height: 6px;
+  background: var(--cyan);
+  border: 4px solid var(--ink);
+  border-radius: 8px 8px 0 0;
+}
+
+.scc-columns.thin .scc-column-bar {
+  border-width: 3px;
+  border-radius: 4px 4px 0 0;
+}
+
+.scc-column-bar.peak {
+  background: var(--pink);
+}
+
+.scc-column span {
+  height: 32px;
+  font: 700 24px var(--font-mono);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ---------- Mapa de calor ---------- */
+.scc-heatmap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.scc-heatmap-row {
+  display: grid;
+  grid-template-columns: 80px repeat(24, 1fr);
+  gap: 5px;
+  align-items: center;
+}
+
+.scc-heatmap-row span {
+  font: 700 22px var(--font-mono);
+}
+
+.scc-heatmap-row i {
+  height: 30px;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+}
+
+/* ---------- Palavras ---------- */
+.scc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.scc-chip {
+  padding: 6px 22px;
+  font-family: var(--font-display);
+  line-height: 1.2;
+  border: 5px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 6px 6px 0 var(--ink);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scc-chip b {
+  font: 700 0.5em var(--font-mono);
+}
+
+/* ---------- Pódio ---------- */
+.scc-podium {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scc-podium li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font: 700 34px / 1.3 var(--font-body);
+}
+
+.scc-podium li .sc-ellipsis {
+  flex: 1;
+}
+
+.scc-podium b {
+  font: 700 28px var(--font-mono);
+}
+
+.scc-medal {
+  flex: none;
+  min-width: 44px;
+  font: 32px var(--font-display);
+}
+
+.scc-podium.small li {
+  gap: 10px;
+  font-size: 28px;
+}
+
+.scc-podium.small b {
+  font-size: 24px;
+}
+
+.scc-podium.small .scc-medal {
+  min-width: 36px;
+  font-size: 26px;
+}
+
+/* ---------- Dupla ---------- */
+.scc-pair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  rotate: -1deg;
+}
+
+.scc-pair strong {
+  max-width: 100%;
+  font: 80px / 1.1 var(--font-display);
+  text-transform: uppercase;
+}
+
+.scc-pair-amp {
+  font: 56px / 1 var(--font-display);
+  color: var(--pink);
+  -webkit-text-stroke: 3px var(--ink);
+}
+
+/* ---------- Enquete ---------- */
+.scc-question {
+  margin-bottom: 22px;
+  font: 700 40px / 1.25 var(--font-body);
+}
+
+.scc-poll {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.scc-poll-option {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+  font: 700 30px var(--font-body);
+  border: 4px solid var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.scc-poll-option > * {
+  position: relative;
+}
+
+.scc-poll-option b {
+  flex: none;
+  font-family: var(--font-mono);
+}
+
+.scc-poll-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--cyan);
+}
+
+.scc-poll-option.winner .scc-poll-bar {
+  background: var(--lime);
+}
+
+/* Títulos do trio com a mesma altura, pras listas ficarem alinhadas */
+.scc-cols-3 h2 {
+  min-height: 2.2em;
+}

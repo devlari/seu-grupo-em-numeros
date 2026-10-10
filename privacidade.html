@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ff4fa3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacidade · Seu grupo em números</title>
+    <meta name="description" content="Como o Seu grupo em números trata a sua conversa: tudo roda no navegador, nada é enviado nem guardado." />
+    <meta property="og:title" content="Privacidade · Seu grupo em números" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og.png" />
+  </head>
+  <body>
+    <main class="page privacy-page">
+      <a class="btn ghost small" href="/">← Voltar pro site</a>
+
+      <header class="privacy-header">
+        <span class="tag">Privacidade</span>
+        <h1>Sua conversa não sai do seu aparelho</h1>
+        <p class="privacy-lead">
+          A análise inteira roda no seu navegador. O arquivo que você escolhe não é enviado pra servidor nenhum, não é
+          guardado e ninguém além de você vê o resultado, a não ser que você compartilhe.
+        </p>
+      </header>
+
+      <section class="card privacy-block">
+        <h2>O que acontece com o arquivo</h2>
+        <ul>
+          <li>O navegador lê o <code>.txt</code> ou o <code>.zip</code> direto do seu aparelho e faz todas as contas ali mesmo.</li>
+          <li>Nada da conversa é enviado pela internet: nem o arquivo, nem as mensagens, nem os nomes, nem os números.</li>
+          <li>Nada fica salvo. Fechou ou recarregou a aba, a análise some.</li>
+          <li>
+            Contatos sem nome aparecem no arquivo só como número de telefone. Aqui eles viram "Contato •1234" (os 4
+            últimos dígitos) até você dar um nome.
+          </li>
+        </ul>
+      </section>
+
+      <section class="card privacy-block">
+        <h2>As imagens que você compartilha</h2>
+        <p>
+          O resumão e as imagens de cada seção são gerados no seu aparelho. Elas só saem dele quando você escolhe
+          compartilhar ou baixar. A partir daí, quem vê depende de onde você postar.
+        </p>
+        <p>
+          As imagens podem mostrar nomes, rankings, palavras mais usadas e perguntas de enquetes do grupo. Dá uma olhada
+          na prévia antes de mandar.
+        </p>
+      </section>
+
+      <section class="card privacy-block">
+        <h2>O que o site guarda</h2>
+        <ul>
+          <li>Nenhum cookie.</li>
+          <li>Nada no armazenamento do navegador (localStorage, IndexedDB).</li>
+          <li>Nenhum login, conta ou cadastro.</li>
+          <li>As fontes vêm do próprio site: nem o Google Fonts fica sabendo que você entrou.</li>
+        </ul>
+      </section>
+
+      <section class="card privacy-block">
+        <h2>Estatísticas de visita</h2>
+        <p>
+          O site usa o <a href="https://vercel.com/docs/analytics/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel Web Analytics</a>
+          pra saber quantas pessoas entram. Ele não usa cookies e não identifica quem você é. Registra só dados gerais
+          da visita, como a página aberta, o site de onde você veio, o país, o navegador, o sistema e o tipo de aparelho.
+        </p>
+        <p>Nada da conversa passa pelas estatísticas.</p>
+      </section>
+
+      <section class="card privacy-block">
+        <h2>Hospedagem</h2>
+        <p>
+          O site fica na <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a>.
+          Como em qualquer site, o servidor recebe os pedidos pra carregar as páginas (com o endereço IP e o navegador) e
+          pode manter registros técnicos disso. Esses pedidos só baixam o site; a conversa nunca vai junto.
+        </p>
+      </section>
+
+      <section class="card dot bg-blue privacy-block">
+        <h2>Não é só promessa</h2>
+        <p>
+          O site é servido com uma regra de segurança (Content Security Policy) que só deixa a página se conectar com o
+          próprio site. Se algum código tentasse mandar a conversa pra outro endereço, o navegador bloquearia a conexão.
+        </p>
+      </section>
+
+      <p class="hint privacy-updated">
+        Atualizado em 10/10/2026. Dúvidas? Fala com <a href="https://devlari.vercel.app/" target="_blank" rel="noopener noreferrer">devlari</a>.
+      </p>
+    </main>
+    <script type="module" src="/src/privacy.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+.privacy-page {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.privacy-header h1 {
+  margin-top: 12px;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  text-transform: uppercase;
+}
+
+.privacy-lead {
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.privacy-block {
+  width: 100%;
+}
+
+.privacy-block h2 {
+  font-size: 1.4rem;
+}
+
+.privacy-block ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.privacy-block li + li {
+  margin-top: 6px;
+}
+
+.privacy-block p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-block code {
+  font-family: var(--font-mono);
+}
+
+.privacy-updated {
+  margin: 0;
+}

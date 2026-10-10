@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Balão de conversa com gráfico de barras, no estilo do site: borda preta grossa e sombra dura -->
+  <path d="M16 8H44A10 10 0 0 1 54 18V34A10 10 0 0 1 44 44H27L12 57L16 44A10 10 0 0 1 6 34V18A10 10 0 0 1 16 8Z" fill="#000" transform="translate(4 4)" stroke="#000" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M16 8H44A10 10 0 0 1 54 18V34A10 10 0 0 1 44 44H27L12 57L16 44A10 10 0 0 1 6 34V18A10 10 0 0 1 16 8Z" fill="#ff4fa3" stroke="#000" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="15" y="26" width="8" height="11" rx="1.5" fill="#000"/>
+  <rect x="26" y="20" width="8" height="17" rx="1.5" fill="#000"/>
+  <rect x="37" y="14" width="8" height="23" rx="1.5" fill="#d7ff3a" stroke="#000" stroke-width="3"/>
+</svg>
