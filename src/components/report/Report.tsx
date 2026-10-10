@@ -17,6 +17,7 @@ import { BASIS_LABEL } from '../awardBasis.ts'
 import { groupName } from '../stories/slides.tsx'
 import type { SectionKind } from '../share/SectionCard.tsx'
 import { SectionShareDialog } from '../share/SectionShareDialog.tsx'
+import { topPeople } from './topPeople.ts'
 import './Report.css'
 import { SiteFooter } from '../SiteFooter.tsx'
 
@@ -48,12 +49,18 @@ const SECTIONS: Record<SectionKind, { id: string; n: string; title: string }> = 
 }
 type SectionInfo = (typeof SECTIONS)[SectionKind]
 
+/** Gráficos e listas por pessoa mostram só quem mais fala: com centenas de pessoas a página travava */
+const TOP_PEOPLE = 12
+
 export function Report({ result: r, fileName, updating, onStories, onSettings, onReset }: Props) {
   const o = r.overview
   const name = groupName(r)
   // Seção cuja imagem está aberta na prévia
   const [sharing, setSharing] = useState<SectionKind | null>(null)
   const share = (kind: SectionKind) => ({ ...SECTIONS[kind], onShare: () => setSharing(kind) })
+  const top = useMemo(() => topPeople(r, TOP_PEOPLE), [r])
+  // Aviso nos gráficos recortados; vazio quando cabe todo mundo
+  const topHint = top.hidden > 0 ? `As ${TOP_PEOPLE} pessoas que mais falam, de ${n(top.total)}.` : undefined
   // Só entram no menu as seções que aparecem na página
   const sections = useMemo(() => [
     r.insights.awards.length > 0 && SECTIONS.awards,
@@ -134,11 +141,11 @@ export function Report({ result: r, fileName, updating, onStories, onSettings, o
 
       <Section {...share('who')}>
         <div className="grid-2">
-          <Card title="Mensagens por pessoa">
-            <RankingBars items={o.perPerson.map((p) => ({ name: p.name, count: p.messages }))} color={COLORS.pink} />
+          <Card title="Mensagens por pessoa" hint={topHint}>
+            <RankingBars items={top.messages} color={COLORS.pink} />
           </Card>
-          <Card title="Perfil de comunicação" hint="Quem fala muito × quem escreve muito. As linhas tracejadas são as medianas.">
-            <ProfileScatter profile={r.rankings.profile} />
+          <Card title="Perfil de comunicação" hint={`Quem fala muito × quem escreve muito. As linhas tracejadas são as medianas.${topHint ? ` ${topHint}` : ''}`}>
+            <ProfileScatter profile={top.profile} />
           </Card>
         </div>
         <div className="chips">
@@ -169,8 +176,9 @@ export function Report({ result: r, fileName, updating, onStories, onSettings, o
             {r.words.top.map((w) => <span key={w.name} className="tag">{w.name} <b>{n(w.count)}</b></span>)}
           </div>
         </Card>
+        {topHint && <p className="hint">Palavras de cada pessoa: {topHint.toLowerCase()}</p>}
         <div className="grid-3">
-          {Object.entries(r.words.perPerson).map(([person, words]) => (
+          {top.words.map(([person, words]) => (
             <Card key={person} title={person}>
               <ol className="word-list">
                 {words.slice(0, 5).map((w) => <li key={w.name}><span>{w.name}</span><span className="mono">{n(w.count)}</span></li>)}
@@ -219,11 +227,16 @@ export function Report({ result: r, fileName, updating, onStories, onSettings, o
 
       <Section {...share('interactions')}>
         <div className="grid-2">
-          <Card title="Rede de respostas" hint="Linha mais grossa = mais respostas entre as duas pessoas.">
-            <InteractionGraph result={r} />
+          <Card title="Rede de respostas" hint={`Linha mais grossa = mais respostas entre as duas pessoas.${topHint ? ` ${topHint}` : ''}`}>
+            <InteractionGraph people={top.messages} pairs={top.pairs} />
           </Card>
-          <Card title="Quem responde quem" hint="Cada linha soma 100%: pra quem respondeu cada pessoa.">
-            <ReplyMatrix matrix={r.interactions.matrix} />
+          <Card
+            title="Quem responde quem"
+            hint={top.hidden > 0
+              ? `Pra quem respondeu cada pessoa. ${topHint} A porcentagem conta as respostas de todo mundo, então a linha pode somar menos de 100%.`
+              : 'Cada linha soma 100%: pra quem respondeu cada pessoa.'}
+          >
+            <ReplyMatrix matrix={top.matrix} />
           </Card>
         </div>
         <div className="grid-3">
@@ -235,9 +248,9 @@ export function Report({ result: r, fileName, updating, onStories, onSettings, o
           <Card title={`Conversas por tamanho (${n(r.conversations.total)} no total)`}>
             <ConversationBuckets buckets={r.conversations.sizeBuckets} />
           </Card>
-          <Card title="Quando cada pessoa apareceu">
+          <Card title="Quando cada pessoa apareceu" hint={topHint}>
             <ol className="word-list">
-              {r.interactions.firstSeen.map((p) => <li key={p.name}><span>{p.name}</span><span className="mono">{month(p.month)}</span></li>)}
+              {top.firstSeen.map((p) => <li key={p.name}><span>{p.name}</span><span className="mono">{month(p.month)}</span></li>)}
             </ol>
           </Card>
         </div>

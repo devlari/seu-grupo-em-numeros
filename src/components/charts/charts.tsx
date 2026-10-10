@@ -153,10 +153,12 @@ export function ProfileScatter({ profile, height = 340 }: { profile: AnalysisRes
 }
 
 /** Rede de quem responde quem: espessura da linha = quantidade de respostas */
-export function InteractionGraph({ result, height = 420 }: { result: AnalysisResult; height?: number }) {
-  const people = result.overview.perPerson
-  const maxMsgs = Math.max(1, ...people.map((p) => p.messages))
-  const pairs = result.interactions.topPairs
+export function InteractionGraph({ people, pairs, height = 420 }: {
+  people: Counted[]
+  pairs: AnalysisResult['interactions']['topPairs']
+  height?: number
+}) {
+  const maxMsgs = Math.max(1, ...people.map((p) => p.count))
   const maxPair = Math.max(1, ...pairs.map((p) => p.count))
   return (
     <Chart
@@ -177,8 +179,8 @@ export function InteractionGraph({ result, height = 420 }: { result: AnalysisRes
           label: { show: true, position: 'bottom', fontFamily: MONO, fontWeight: 700, color: INK, distance: 6 },
           data: people.map((p, i) => ({
             name: p.name,
-            value: p.messages,
-            symbolSize: 18 + 42 * Math.sqrt(p.messages / maxMsgs),
+            value: p.count,
+            symbolSize: 18 + 42 * Math.sqrt(p.count / maxMsgs),
             itemStyle: { color: SERIES[i % SERIES.length], borderColor: INK, borderWidth: 3 },
           })),
           links: pairs.map((p) => ({
