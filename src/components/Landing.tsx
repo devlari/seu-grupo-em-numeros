@@ -87,6 +87,10 @@ export function Landing({ onFile, loading, error }: Props) {
             Tem que ser pelo celular: o WhatsApp Web não exporta conversas. Com mídia também funciona, mas o arquivo fica
             enorme e não muda nada no resultado.
           </p>
+          <p className="hint">
+            <b>O histórico começa tarde demais?</b> Se você trocou de celular ou perdeu as conversas, peça pra alguém do
+            grupo exportar: o arquivo de qualquer pessoa do grupo serve, com as mensagens de todo mundo.
+          </p>
         </div>
 
         <div className="card dot bg-blue privacy">
