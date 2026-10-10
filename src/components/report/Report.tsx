@@ -49,8 +49,13 @@ const SECTIONS: Record<SectionKind, { id: string; n: string; title: string }> = 
 }
 type SectionInfo = (typeof SECTIONS)[SectionKind]
 
-/** Gráficos e listas por pessoa mostram só quem mais fala: com centenas de pessoas a página travava */
-const TOP_PEOPLE = 12
+/**
+ * Gráficos e listas por pessoa mostram só quem mais fala: com centenas de pessoas a página travava.
+ * Barras e listas crescem pra baixo e aguentam mais gente; matriz, rede e dispersão precisam caber
+ * na largura do celular e ficam ilegíveis com mais de 12.
+ */
+const TOP_PEOPLE = 25
+const TOP_PEOPLE_DENSE = 12
 
 export function Report({ result: r, fileName, updating, onStories, onSettings, onReset }: Props) {
   const o = r.overview
@@ -59,8 +64,12 @@ export function Report({ result: r, fileName, updating, onStories, onSettings, o
   const [sharing, setSharing] = useState<SectionKind | null>(null)
   const share = (kind: SectionKind) => ({ ...SECTIONS[kind], onShare: () => setSharing(kind) })
   const top = useMemo(() => topPeople(r, TOP_PEOPLE), [r])
+  const dense = useMemo(() => topPeople(r, TOP_PEOPLE_DENSE), [r])
   // Aviso nos gráficos recortados; vazio quando cabe todo mundo
-  const topHint = top.hidden > 0 ? `As ${TOP_PEOPLE} pessoas que mais falam, de ${n(top.total)}.` : undefined
+  const hintFor = (cut: ReturnType<typeof topPeople>, limit: number) =>
+    cut.hidden > 0 ? `As ${limit} pessoas que mais falam, de ${n(cut.total)}.` : undefined
+  const topHint = hintFor(top, TOP_PEOPLE)
+  const denseHint = hintFor(dense, TOP_PEOPLE_DENSE)
   // Só entram no menu as seções que aparecem na página
   const sections = useMemo(() => [
     r.insights.awards.length > 0 && SECTIONS.awards,
@@ -144,8 +153,8 @@ export function Report({ result: r, fileName, updating, onStories, onSettings, o
           <Card title="Mensagens por pessoa" hint={topHint}>
             <RankingBars items={top.messages} color={COLORS.pink} />
           </Card>
-          <Card title="Perfil de comunicação" hint={`Quem fala muito × quem escreve muito. As linhas tracejadas são as medianas.${topHint ? ` ${topHint}` : ''}`}>
-            <ProfileScatter profile={top.profile} />
+          <Card title="Perfil de comunicação" hint={`Quem fala muito × quem escreve muito. As linhas tracejadas são as medianas.${denseHint ? ` ${denseHint}` : ''}`}>
+            <ProfileScatter profile={dense.profile} />
           </Card>
         </div>
         <div className="chips">
@@ -227,16 +236,16 @@ export function Report({ result: r, fileName, updating, onStories, onSettings, o
 
       <Section {...share('interactions')}>
         <div className="grid-2">
-          <Card title="Rede de respostas" hint={`Linha mais grossa = mais respostas entre as duas pessoas.${topHint ? ` ${topHint}` : ''}`}>
-            <InteractionGraph people={top.messages} pairs={top.pairs} />
+          <Card title="Rede de respostas" hint={`Linha mais grossa = mais respostas entre as duas pessoas.${denseHint ? ` ${denseHint}` : ''}`}>
+            <InteractionGraph people={dense.messages} pairs={dense.pairs} />
           </Card>
           <Card
             title="Quem responde quem"
-            hint={top.hidden > 0
-              ? `Pra quem respondeu cada pessoa. ${topHint} A porcentagem conta as respostas de todo mundo, então a linha pode somar menos de 100%.`
+            hint={denseHint
+              ? `Pra quem respondeu cada pessoa. ${denseHint} A porcentagem conta as respostas de todo mundo, então a linha pode somar menos de 100%.`
               : 'Cada linha soma 100%: pra quem respondeu cada pessoa.'}
           >
-            <ReplyMatrix matrix={top.matrix} />
+            <ReplyMatrix matrix={dense.matrix} />
           </Card>
         </div>
         <div className="grid-3">
