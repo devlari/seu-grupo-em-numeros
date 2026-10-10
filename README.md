@@ -43,7 +43,7 @@ Site estático: `npm run build` e publique a pasta `dist/` (Vercel, Netlify ou G
 
 ## Deploy
 
-Site estático na Vercel, com o projeto apontando pra pasta `web` (framework Vite, comando `npm run build`, saída `dist`).
+Site estático na Vercel (framework Vite, comando `npm run build`, saída `dist`). O repositório é só o app, então o Root Directory fica no padrão.
 
 - `.env` tem `VITE_SITE_URL`, o endereço público usado nas tags de prévia do link (`og:image` precisa de URL absoluta). Troque se o domínio mudar.
 - `vercel.json` liga as URLs sem `.html` (`/privacidade`) e define os cabeçalhos de segurança. O CSP com `connect-src 'self'` é o que garante que nada sai do navegador: qualquer mudança nele precisa ser refletida em `privacidade.html`.
