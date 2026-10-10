@@ -27,3 +27,8 @@ dist-ssr
 *.txt
 *.zip
 !public/**/*.txt
+
+# Variáveis de ambiente: só o exemplo entra no repositório
+.env
+.env.*
+!.env.example

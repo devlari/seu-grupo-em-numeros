@@ -2,6 +2,12 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
+// Endereço público pras tags de prévia do link. Na Vercel vem do domínio de produção do projeto;
+// fora dela, defina VITE_SITE_URL no .env (ou nas variáveis do painel da Vercel, pra forçar outro domínio)
+if (!process.env.VITE_SITE_URL && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  process.env.VITE_SITE_URL = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
