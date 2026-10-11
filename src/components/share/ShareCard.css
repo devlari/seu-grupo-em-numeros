@@ -19,9 +19,17 @@
   gap: 8px;
 }
 
-.share-secondary {
-  display: flex;
-  gap: 8px;
+/* Os dois botões principais do último story, com a mesma largura */
+.share-main {
+  width: min(100%, 320px);
+  justify-content: center;
+}
+
+.share-teaser {
+  margin: -2px 0 2px;
+  font-size: 0.8rem;
+  color: var(--white);
+  opacity: 0.85;
 }
 
 .share-msg {

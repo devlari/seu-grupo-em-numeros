@@ -24,16 +24,16 @@ export function ShareSlide({ result, onReport, onRestart }: Props) {
       </SharePreview>
       <div className="share-actions">
         <button
-          className="btn bg-lime"
+          className="btn bg-lime share-main"
           onClick={() => share(`retrospectiva-${fileSlug(name) || 'grupo'}.png`, `${name} em números`)}
           disabled={status === 'working'}
         >
           {status === 'working' ? 'Gerando…' : '📲 Compartilhar resumão'}
         </button>
-        <div className="share-secondary">
-          <button className="btn small ghost" onClick={onReport}>Relatório completo</button>
-          <button className="btn small ghost" onClick={onRestart}>↺ Ver de novo</button>
-        </div>
+        {/* Nos testes ninguém achava o relatório: o botão era pequeno e com o mesmo peso de "Ver de novo" */}
+        <button className="btn bg-cyan share-main" onClick={onReport}>📊 Ver análise completa →</button>
+        <p className="share-teaser mono">gráficos, rankings e quem responde quem</p>
+        <button className="btn small ghost" onClick={onRestart}>↺ Ver de novo</button>
         {status === 'done' && <p className="share-msg mono">Pronto! 🎉</p>}
         {status === 'error' && <p className="share-msg error">Não deu pra gerar a imagem. Tenta de novo?</p>}
       </div>
